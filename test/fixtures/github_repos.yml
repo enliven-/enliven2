@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  repo_id: 
+  full_name: 
+  description: 
+  private: 
+  fork: 
+  language: 
+  forks_count: 
+  watchers_count: 
+  size: 
+  repo_created_at: 2013-08-27 09:29:25
+
+two:
+  repo_id: 
+  full_name: 
+  description: 
+  private: 
+  fork: 
+  language: 
+  forks_count: 
+  watchers_count: 
+  size: 
+  repo_created_at: 2013-08-27 09:29:25

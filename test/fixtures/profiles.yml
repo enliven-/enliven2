@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  github_profile_id: 1
+  so_profile_id: 1
+
+two:
+  email: MyString
+  github_profile_id: 1
+  so_profile_id: 1

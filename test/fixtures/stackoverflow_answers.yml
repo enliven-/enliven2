@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stackoverflow_question_id: 1
+  answer_created_at: 2013-08-28 12:24:06
+  last_edit_date: 2013-08-28 12:24:06
+  last_activity_date: 2013-08-28 12:24:06
+  score: 1
+  is_accepted: false
+  up_vote_count: 1
+  down_vote_count: 1
+  stackoverflow_profile_id: 1
+
+two:
+  stackoverflow_question_id: 1
+  answer_created_at: 2013-08-28 12:24:06
+  last_edit_date: 2013-08-28 12:24:06
+  last_activity_date: 2013-08-28 12:24:06
+  score: 1
+  is_accepted: false
+  up_vote_count: 1
+  down_vote_count: 1
+  stackoverflow_profile_id: 1

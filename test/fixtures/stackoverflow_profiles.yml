@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  profile_type: MyString
+  profile_created_at: 2013-08-28 16:25:17
+  name: MyString
+  reputation_change_day: 1
+  reputation_change_week: 1
+  reputation_change_month: 1
+  reputation_change_quarter: 1
+  reputation_change_year: 1
+  age: 1
+  last_access_date: 2013-08-28 16:25:17
+  last_modified_date: 2013-08-28 16:25:17
+  is_employee: false
+  blog: MyString
+  location: MyString
+  account_id: 1
+  accept_rate: 1
+  gold_badge_count: 1
+  silver_badge_count: 1
+  bronze_badge_count: 1
+  repution: 1
+  answer_count: 1
+  question_count: 1
+  view_count: 1
+  about_me: MyText
+
+two:
+  profile_type: MyString
+  profile_created_at: 2013-08-28 16:25:17
+  name: MyString
+  reputation_change_day: 1
+  reputation_change_week: 1
+  reputation_change_month: 1
+  reputation_change_quarter: 1
+  reputation_change_year: 1
+  age: 1
+  last_access_date: 2013-08-28 16:25:17
+  last_modified_date: 2013-08-28 16:25:17
+  is_employee: false
+  blog: MyString
+  location: MyString
+  account_id: 1
+  accept_rate: 1
+  gold_badge_count: 1
+  silver_badge_count: 1
+  bronze_badge_count: 1
+  repution: 1
+  answer_count: 1
+  question_count: 1
+  view_count: 1
+  about_me: MyText

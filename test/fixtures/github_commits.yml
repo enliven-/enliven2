@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sha: MyString
+  committer: MyString
+  commit_created_at: 2013-08-27 15:05:34
+  additions: 1
+  deletions: 1
+
+two:
+  sha: MyString
+  committer: MyString
+  commit_created_at: 2013-08-27 15:05:34
+  additions: 1
+  deletions: 1
