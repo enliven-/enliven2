@@ -13,8 +13,8 @@ class StackoverflowProfile < ActiveRecord::Base
   alias_method :tags, :stackoverflow_tags
   alias_method :taggings, :stackoverflow_taggings
   
-  def fetch_questions
-    user = Serel::User.find(id)
+  def fetch_questions(user = nil)
+    user ||= Serel::User.find(id)
     page = 1
     has_more = true
     while(has_more) do
@@ -39,8 +39,8 @@ class StackoverflowProfile < ActiveRecord::Base
     end
   end
   
-  def fetch_answers
-    user = Serel::User.find(id)
+  def fetch_answers(user = nil)
+    user ||= Serel::User.find(id)
     page = 1
     has_more = true
     while(has_more) do
@@ -62,8 +62,8 @@ class StackoverflowProfile < ActiveRecord::Base
     end
   end
   
-  def fetch_tags
-    user = Serel::User.find(id)
+  def fetch_tags(user = nil)
+    user ||= Serel::User.find(id)
     page = 1
     has_more = true
     tags = []
@@ -83,8 +83,8 @@ class StackoverflowProfile < ActiveRecord::Base
     self.save
   end
   
-  def fetch_badges
-    user = Serel::User.find(id)
+  def fetch_badges(user = nil)
+    user ||= Serel::User.find(id)
     page = 1
     has_more = true
     while(has_more) do
@@ -101,8 +101,8 @@ class StackoverflowProfile < ActiveRecord::Base
     end
   end
   
-  def fetch_comments
-    user = Serel::User.find(id)
+  def fetch_comments(user = nil)
+    user ||= Serel::User.find(id)
     page = 1
     has_more = true
     while(has_more) do

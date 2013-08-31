@@ -32,8 +32,11 @@ module Enliven
                                     view_count:                user.view_count,
                                     about_me:                  user.about_me
                                   )
-        so_profile.fetch_tags
-        so_profile.fetch_questions
+        so_profile.fetch_tags user
+        so_profile.fetch_questions user
+        so_profile.fetch_answers user
+        so_profile.fetch_badges user
+        so_profile.fetch_comments user
       end 
     end
   end

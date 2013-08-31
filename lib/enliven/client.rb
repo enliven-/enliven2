@@ -7,9 +7,5 @@ module Enliven
       @github_client = @github_client || Octokit::Client.new(client_id: client_id, client_secret: client_secret)
     end
     
-    def so_client
-      Serel::Base.config(:stackoverflow, (ENV['stackoverflow_api_key'] || 'jlBUUjz0K70aJHCJpAzOUg(('))
-    end
-  
   end
 end

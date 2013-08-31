@@ -1,0 +1,1 @@
+Serel::Base.config(:stackoverflow, (ENV['stackoverflow_api_key'] || 'jlBUUjz0K70aJHCJpAzOUg(('))
