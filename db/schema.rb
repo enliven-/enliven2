@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827120448) do
+ActiveRecord::Schema.define(:version => 20130830135227) do
 
   create_table "github_commits", :force => true do |t|
     t.string   "sha"
@@ -84,6 +84,108 @@ ActiveRecord::Schema.define(:version => 20130827120448) do
     t.integer  "so_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "stackoverflow_answers", :force => true do |t|
+    t.integer  "stackoverflow_question_id"
+    t.datetime "answer_created_at"
+    t.datetime "last_edit_date"
+    t.datetime "last_activity_date"
+    t.integer  "score"
+    t.boolean  "is_accepted"
+    t.integer  "up_vote_count"
+    t.integer  "down_vote_count"
+    t.integer  "stackoverflow_profile_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "stackoverflow_badges", :force => true do |t|
+    t.string   "name"
+    t.string   "rank"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "badge_type"
+  end
+
+  create_table "stackoverflow_comments", :force => true do |t|
+    t.integer  "stackoverflow_profile_id"
+    t.integer  "stackoverflow_post_id"
+    t.integer  "score"
+    t.datetime "creation_date"
+    t.boolean  "edited"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "stackoverflow_profile_badges", :force => true do |t|
+    t.integer  "stactoverflow_profile_id"
+    t.integer  "stackoverflow_badge_id"
+    t.integer  "award_count"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "stackoverflow_profile_id"
+  end
+
+  create_table "stackoverflow_profiles", :force => true do |t|
+    t.string   "profile_type"
+    t.datetime "creation_date"
+    t.string   "name"
+    t.integer  "reputation_change_day"
+    t.integer  "reputation_change_week"
+    t.integer  "reputation_change_month"
+    t.integer  "reputation_change_quarter"
+    t.integer  "reputation_change_year"
+    t.integer  "age"
+    t.datetime "last_access_date"
+    t.datetime "last_modified_date"
+    t.boolean  "is_employee"
+    t.string   "blog"
+    t.string   "location"
+    t.integer  "account_id"
+    t.integer  "accept_rate"
+    t.integer  "gold_badge_count"
+    t.integer  "silver_badge_count"
+    t.integer  "bronze_badge_count"
+    t.integer  "reputation"
+    t.integer  "answer_count"
+    t.integer  "question_count"
+    t.integer  "view_count"
+    t.text     "about_me"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "stackoverflow_questions", :force => true do |t|
+    t.datetime "last_edit_date"
+    t.datetime "question_created_at"
+    t.datetime "last_activity_date"
+    t.integer  "score"
+    t.integer  "answer_count"
+    t.integer  "up_vote_count"
+    t.integer  "down_vote_count"
+    t.integer  "favorite_count"
+    t.integer  "view_count"
+    t.integer  "stackoverflow_profile_id"
+    t.boolean  "is_answered"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "stackoverflow_taggings", :force => true do |t|
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "stackoverflow_taggable_id"
+    t.string   "stackoverflow_taggable_type"
+    t.integer  "stackoverflow_tag_id"
+  end
+
+  create_table "stackoverflow_tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "count"
+    t.boolean  "has_synonyms"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

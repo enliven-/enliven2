@@ -5,7 +5,7 @@ module Enliven
       id = id || (rand(100000)+1)
       user = Serel::User.find(id)
       if user
-        StackoverflowProfile.create(
+        so_profile = StackoverflowProfile.create(
                                     id:                        id,
                                     name:                      user.display_name,
                                     profile_type:              user.user_type,
@@ -19,8 +19,8 @@ module Enliven
                                     last_access_date:          user.last_access_date,
                                     last_modified_date:        user.last_modified_date,
                                     is_employee:               user.is_employee,
-                                    blog:                      user.website,
-                                    localtion:                 user.location,
+                                    blog:                      user.website_url,
+                                    location:                  user.location,
                                     account_id:                user.account_id,
                                     accept_rate:               user.accept_rate,
                                     gold_badge_count:          user.badge_counts['gold'],
@@ -32,7 +32,9 @@ module Enliven
                                     view_count:                user.view_count,
                                     about_me:                  user.about_me
                                   )
-      end
+        so_profile.fetch_tags
+        so_profile.fetch_questions
+      end 
     end
   end
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stackoverflow_profile_id: 1
+  stackoverflow_post_id: 1
+  score: 1
+  creation_date: 2013-08-30 19:22:27
+  edited: false
+
+two:
+  stackoverflow_profile_id: 1
+  stackoverflow_post_id: 1
+  score: 1
+  creation_date: 2013-08-30 19:22:27
+  edited: false

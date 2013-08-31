@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stactoverflow_profile_id: 1
+  stackoverflow_badge_id: 1
+  award_count: 1
+
+two:
+  stactoverflow_profile_id: 1
+  stackoverflow_badge_id: 1
+  award_count: 1

@@ -1,5 +1,6 @@
 module Enliven
   class GithubSucker
+    
     include Enliven::Client
     
     def users(start_id = nil)
