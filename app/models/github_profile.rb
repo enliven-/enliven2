@@ -55,5 +55,30 @@ class GithubProfile < ActiveRecord::Base
 #   def gist_languages(gist)
 #     gist.files.
 #   end
+
+  def prof_raw_score
+    repos.inject(0) { |result, r| result + r.repo_raw_score }
+  end
+
+  def creator?
+    flags = repos.map { |r| r.lib? }
+    bool = flags.inject(0) { |r, e| r + (e[0]==true ? 1 : 0) } > 2
+    creat_score = flags.inject(0) { |r, e| r + e[1] }
+    return bool, creat_score
+  end
+
+
+  def opnsrc_contrb?
+    flags = repos.map { |r| r.osc? }
+    bool = flags.inject(0) { |r, e| r + (e[0]==true ? 1 : 0) } > 2
+    osc_score = flags.inject(0) { |r, e| r + e[1] }
+    return bool, osc_score 
+  end
+
+  def skilled?
+    skill_score = prof_raw_score/repos.length
+    return false unless  skill_score>300
+    repos_scores =repos.unless
+  end
   
 end
