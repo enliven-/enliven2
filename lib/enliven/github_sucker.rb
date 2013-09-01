@@ -1,5 +1,5 @@
 module Enliven
-  module GithubSucker
+  class GithubSucker
     
     include Enliven::Client
     
