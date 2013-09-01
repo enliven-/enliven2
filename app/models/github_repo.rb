@@ -38,8 +38,8 @@ class GithubRepo < ActiveRecord::Base
 
   def commit_activity
     commits_log = []
-    commits.each do |c|
-      commit = { ts: c.commit_created_at, adds: c.additions, dels: c.deletions }
+    commits.each do |commit|
+      commit = { timestamp: commit.commit_created_at, adds: commit.additions, dels: commit.deletions }
       commits_log << commit
     end
     commits_log
@@ -52,8 +52,8 @@ class GithubRepo < ActiveRecord::Base
 
   def commits_score
     total = 0
-    commit_activity.each do |c|
-      total += c[:adds] - c[:dels]/2.0
+    commit_activity.each do |commit|
+      total += commit[:adds] - commit[:dels]/2.0
     end
     total
   end
@@ -68,7 +68,7 @@ class GithubRepo < ActiveRecord::Base
   # end
 
 
-  def osc?
+  def open_src_contribution?
     return (fork and (repo_raw_score>500) and (size>200)), repo_raw_score-500+size-200
   end
 

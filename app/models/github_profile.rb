@@ -56,23 +56,25 @@ class GithubProfile < ActiveRecord::Base
 #     gist.files.
 #   end
 
-  def prof_raw_score
-    repos.inject(0) { |result, r| result + r.repo_raw_score }
+  def raw_score
+    repos.inject(0) { |result, repo| result + repo.repo_raw_score }
   end
 
   def creator?
-    flags = repos.map { |r| r.lib? }
-    bool = flags.inject(0) { |r, e| r + (e[0]==true ? 1 : 0) } > 2
-    creat_score = flags.inject(0) { |r, e| r + e[1] }
-    return bool, creat_score
+    thresh_hold     = 2
+    is_lib_flags    = repos.map { |repo| repo.lib? }
+    is_creator      = is_lib_flags.inject(0) { |count, new_entry| count + (new_entry[0]==true ? 1 : 0) } > thresh_hold
+    creator_score   = is_lib_flags.inject(0) { |count, new_entry| count + new_entry[1] }
+    return is_creator, creator_score
   end
 
 
-  def opnsrc_contrb?
-    flags = repos.map { |r| r.osc? }
-    bool = flags.inject(0) { |r, e| r + (e[0]==true ? 1 : 0) } > 2
-    osc_score = flags.inject(0) { |r, e| r + e[1] }
-    return bool, osc_score 
+  def open_src_contributor?
+    thresh_hold                 = 2
+    is_open_src_contrbtn_flags  = repos.map { |repo| repo.open_src_contribution? }
+    is_open_src_contributor     = is_open_src_contrbtn_flags.inject(0) { |count, new_entry| count + (new_entry[0]==true ? 1 : 0) } > thresh_hold
+    open_src_contributor_score  = is_open_src_contrbtn_flags.inject(0) { |count, new_entry| count + new_entry[1] }
+    return is_open_src_contributor, open_src_contributor_score 
   end
 
   def skilled?
