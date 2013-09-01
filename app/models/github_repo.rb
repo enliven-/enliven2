@@ -35,4 +35,45 @@ class GithubRepo < ActiveRecord::Base
     warn commit.inspect
     warn "======================================================="
   end
+
+  def commit_activity
+    commits_log = []
+    commits.each do |c|
+      commit = { ts: c.commit_created_at, adds: c.additions, dels: c.deletions }
+      commits_log << commit
+    end
+    commits_log
+  end
+
+  def repo_raw_score
+    size + watchers_count + collaborators.length + contributors.length + forkers.length
+  end
+
+
+  def commits_score
+    total = 0
+    commit_activity.each do |c|
+      total += c[:adds] - c[:dels]/2.0
+    end
+    total
+  end
+
+
+  # def repo_score
+  #   score = 0
+
+  #   forkers_logins = forkers.split(',')
+  #   forkers = forkers_logins.map { |f_login| GithubProfile.find("login?", f_login) }
+  #   forkers.inject(score) { |result, f| result + f.prof_raw_score }
+  # end
+
+
+  def osc?
+    return (fork and (repo_raw_score>500) and (size>200)), repo_raw_score-500+size-200
+  end
+
+  def lib?
+    return ((repo_raw_score>500) and (not fork)), repo_raw_score-500+size-200
+  end
+
 end
