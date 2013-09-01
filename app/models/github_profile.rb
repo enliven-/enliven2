@@ -57,7 +57,7 @@ class GithubProfile < ActiveRecord::Base
 #   end
 
   def raw_score
-    repos.inject(0) { |result, repo| result + repo.repo_raw_score }
+    repos.inject(0) { |result, repo| result + repo.raw_score }
   end
 
   def creator?
@@ -78,9 +78,46 @@ class GithubProfile < ActiveRecord::Base
   end
 
   def skilled?
-    skill_score = prof_raw_score/repos.length
-    return false unless  skill_score>300
-    repos_scores =repos.unless
+    ave_thresh_hold   = 200
+    prof_thresh_hold  = 2000
+    prof_skill_score  = raw_score
+    ave_skill_score   = raw_score / repos.length
+
+    if prof_skill_score > prof_thresh_hold && ave_skill_score > ave_thresh_hold
+      return true, prof_skill_score
+    else
+      return false, prof_skill_score
+    end
+
   end
+
+  def all_round_ninja?
+    ave_thresh_hold = 400
+    ind_thresh_hold = 200
+    min_lang_count  = 4
+    skill_score = raw_score / repos.length
+    if skill_score > ave_thresh_hold
+      return false, {}
+    end
+
+    selected_langs = {}
+    repos.each do |repo|
+      if repo.language and repo.raw_score > ind_thresh_hold
+        if !selected_langs[repo.language]
+          selected_langs[repo.language] = repo.raw_score
+        else
+          selected_langs[repo.language] += repo.raw_score
+        end
+      end
+    end
+
+    if selected_langs.length < min_lang_count
+      return false, selected_langs
+    else
+      return true, selected_langs
+    end
+
+  end
+
   
 end

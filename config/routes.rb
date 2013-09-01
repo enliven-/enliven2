@@ -1,8 +1,8 @@
 Enliven::Application.routes.draw do
   
- # mount Sidekiq::Web, at: '/sidekiq'
+  # mount Sidekiq::Web, at: '/sidekiq'
   
-  
+  resources :github_profiles
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
