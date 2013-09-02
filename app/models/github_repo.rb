@@ -45,23 +45,18 @@ class GithubRepo < ActiveRecord::Base
     commits_log
   end
 
-  def repo_raw_score
+  def raw_score
     size + watchers_count + collaborators.length + contributors.length + forkers.length
   end
 
 
   def commits_score
-    total = 0
-    commit_activity.each do |commit|
-      total += commit[:adds] - commit[:dels]/2.0
-    end
-    total
+    commit_activity.inject(0) { |total_score, commit| total_score + commit[:adds] - commit[:dels] / 2.0 }
   end
 
 
   # def repo_score
   #   score = 0
-
   #   forkers_logins = forkers.split(',')
   #   forkers = forkers_logins.map { |f_login| GithubProfile.find("login?", f_login) }
   #   forkers.inject(score) { |result, f| result + f.prof_raw_score }
@@ -69,11 +64,11 @@ class GithubRepo < ActiveRecord::Base
 
 
   def open_src_contribution?
-    return (fork and (repo_raw_score>500) and (size>200)), repo_raw_score-500+size-200
+    return (fork and (raw_score>500) and (size>200)), raw_score-500+size-200
   end
 
   def lib?
-    return ((repo_raw_score>500) and (not fork)), repo_raw_score-500+size-200
+    return ((raw_score>500) and (not fork)), raw_score-500+size-200
   end
 
 end
