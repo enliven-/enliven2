@@ -1,1 +1,39 @@
-Hey there!
+
+<div id="buttons">
+    <div class="small success button" id="area">Score / Time</div>
+    <div class="small success button" id="line">Reputation/Time</div>
+    <div class="small success button" id="pie"> Language Distr. </div>
+    <div class="small success button" id="bar"> Interpreted Characteristics </div>
+</div>
+
+<div id="container" style="width: 1000px; height: 400px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var config;
+
+        $(".button").on("click", function(e) {
+            var type    = $(this).attr("id")
+            ,   url     = "/" + type + "obj"
+            ,   div_id  = "#container";
+
+            draw(div_id, url);
+
+        });
+        
+        function draw(div_id, url) {
+            $.ajax({
+                dataType: "json",
+                url: url,
+                success: function(data) {
+                    config = data;
+                    $(div_id).highcharts(config);
+                }
+            });
+        }
+
+    });
+    
+</script>
