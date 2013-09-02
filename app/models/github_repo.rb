@@ -19,13 +19,12 @@ class GithubRepo < ActiveRecord::Base
   
   def fetch_commit(commit)
     commit = github_client.commit full_name, commit.sha
-    self.commits.create(
-                                sha:               commit.sha,
-                                committer:         (commit.committer.login if commit.committer),
-                                commit_created_at: commit.commit.committer.date,
-                                additions:         commit.stats.additions,
-                                deletions:         commit.stats.deletions
-                              )
+    self.commits.create(sha:               commit.sha,
+                        committer:         (commit.committer.login if commit.committer),
+                        commit_created_at: commit.commit.committer.date,
+                        additions:         commit.stats.additions,
+                        deletions:         commit.stats.deletions
+                       )
   rescue Octokit::TooManyRequests
     warn "Opps request limit reached"
     sleep(github_client.rate_limit.resets_in)                           
@@ -37,12 +36,7 @@ class GithubRepo < ActiveRecord::Base
   end
 
   def commit_activity
-    commits_log = []
-    commits.each do |commit|
-      commit = { timestamp: commit.commit_created_at, adds: commit.additions, dels: commit.deletions }
-      commits_log << commit
-    end
-    commits_log
+    commits.map { |commit| {ts: commit.commit_created_at, adds: commit.additions, dels: commit.deletions} }
   end
 
   def raw_score

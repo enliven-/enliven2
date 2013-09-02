@@ -8,6 +8,8 @@ class GithubProfile < ActiveRecord::Base
   
   belongs_to :profile
   
+  # Write methods to fetch data from SO's database using their api
+  
   def fetch_repos
     for repo in github_client.repositories(username)
       fetch_repo(repo)
@@ -55,6 +57,8 @@ class GithubProfile < ActiveRecord::Base
 #   def gist_languages(gist)
 #     gist.files.
 #   end
+
+   # Read methods for drawing graph
 
   def raw_score
     repos.inject(0) { |result, repo| result + repo.raw_score }

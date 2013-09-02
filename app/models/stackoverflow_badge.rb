@@ -3,5 +3,6 @@ class StackoverflowBadge < ActiveRecord::Base
   
   has_many :stackoverflow_profile_badges
   has_many :stackoverflow_profiles, through: :stackoverflow_profile_badges
+  alias_method :profiles, :stackoverflow_profiles
   
 end

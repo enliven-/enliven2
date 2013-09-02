@@ -7,11 +7,14 @@ class StackoverflowProfile < ActiveRecord::Base
   
   has_many :stackoverflow_profile_badges
   has_many :stackoverflow_badges, through: :stackoverflow_profile_badges
+  alias_method :badges, :stackoverflow_badges
 
   has_many :stackoverflow_tags, through: :stackoverflow_taggings
   has_many :stackoverflow_taggings, as: :stackoverflow_taggable
   alias_method :tags, :stackoverflow_tags
   alias_method :taggings, :stackoverflow_taggings
+  
+  # Write methods to fetch data from SO's database using their api
   
   def fetch_questions(user = nil)
     user ||= Serel::User.find(id)
@@ -92,7 +95,7 @@ class StackoverflowProfile < ActiveRecord::Base
       for badge in badges
         so_badge = StackoverflowBadge.find_or_create_by_id(badge.id) do |b|
                     b.name = badge.name
-                    b.rank = badge.rank
+                    M   Gb.rank = badge.rank
                    end
         StackoverflowProfileBadge.create(stackoverflow_profile_id: id, stackoverflow_badge_id: so_badge.id, award_count: badge.award_count)
       end
@@ -114,5 +117,13 @@ class StackoverflowProfile < ActiveRecord::Base
       page += 1 
     end
   end
+  
+  # Read methods for drawing graph
+  
+  def raw_score
+    reputation
+  end
+  
+  
   
 end
