@@ -2,9 +2,14 @@ Enliven::Application.routes.draw do
   
   # mount Sidekiq::Web, at: '/sidekiq'
   
-  resources :github_profiles
+  resources :github_profiles, :github_repos
 
-  match 'profiles/(:id)/commit-activity' => 'github_profiles#commit_activity'
+  resources :github_repos do
+    member do
+      get 'commit_activity'
+    end
+  end
+  # match 'profiles/(:profile_id)/repos/(:repo_id)/commit-activity' => 'github_profiles#commit_activity'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
