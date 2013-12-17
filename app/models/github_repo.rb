@@ -36,7 +36,7 @@ class GithubRepo < ActiveRecord::Base
   end
 
   def commit_activity
-    commits.map { |commit| {ts: commit.commit_created_at, adds: commit.additions, dels: commit.deletions} }
+    commits.map { |commit| {time_stamp: commit.commit_created_at, adds: commit.additions, dels: commit.deletions} }
   end
 
   def raw_score

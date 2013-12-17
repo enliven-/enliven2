@@ -72,7 +72,6 @@ class GithubProfile < ActiveRecord::Base
     return is_creator, creator_score
   end
 
-
   def open_src_contributor?
     thresh_hold                 = 2
     is_open_src_contrbtn_flags  = repos.map { |repo| repo.open_src_contribution? }
@@ -107,10 +106,10 @@ class GithubProfile < ActiveRecord::Base
     selected_langs = {}
     repos.each do |repo|
       if repo.language and repo.raw_score > ind_thresh_hold
-        if !selected_langs[repo.language]
-          selected_langs[repo.language] = repo.raw_score
+        if selected_langs[repo.language].present?
+          selected_langs[repo.language] += repo.raw_score  
         else
-          selected_langs[repo.language] += repo.raw_score
+          selected_langs[repo.language] = repo.raw_score
         end
       end
     end
