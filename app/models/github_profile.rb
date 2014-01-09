@@ -27,7 +27,7 @@ class GithubProfile < ActiveRecord::Base
                               watchers_count:  repo.watchers_count,
                               size:            repo.size,
                               repo_created_at: repo.created_at,
-                              forkers:          (github_client.forks(repo.full_name).map { |fork| fork.owner.login}.join(', ')),
+                              forkers:         (github_client.forks(repo.full_name).map { |fork| fork.owner.login}.join(', ')),
                               watchers:        (github_client.watchers(repo.full_name).map { |watcher| watcher.login}.join(', ')),
                               contributors:    (github_client.contributors(repo.full_name).map { |contributor| contributor.login }.join(', ')),
                               collaborators:   (github_client.collaborators(repo.full_name).map { |collaborator| collaborator.login }.join(', '))
